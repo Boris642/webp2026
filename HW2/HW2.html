@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+table {
+font-family: Arial, Helvetica, sans-serif;
+border-collapse: collapse;
+width: 100%;
+}
+td, th {
+border: 1px solid #ddd;
+padding: 6px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+tr:hover {background-color: #ddd;}
+th {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: #04AA6D;
+color: white;
+}
+button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+.popover {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.popover-content {
+    background-color: transparent;
+    margin: 5% auto;
+    padding: 0;
+    border: none;
+    width: 500px;
+    height: 80vh;
+    position: relative;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4); 
+}
+
+.close {
+    position: absolute;
+    right: -30px;
+    top: -10px;
+    color: white; 
+    font-size: 30px;
+    cursor: pointer;
+}
+.close:hover { color: black; }
+</style>
+</head>
+
+<body>
+<h1>資工選課表</h1>
+<table id="csie">
+    <tr>
+        <th>開課單位</th>
+        <th>課程名稱</th>
+        <th>授課教師</th>
+    </tr>
+    <tr>
+        <td>資工系</td>
+        <td onclick="openPopover('https://catalog.cgu.edu.tw/coursedata?sectionid=A2337')" style="cursor:pointer;">
+        物件導向軟體設計</td>
+        <td>黃崇源</td>
+    </tr>
+    <tr>
+        <td>資工系</td>
+        <td onclick="openPopover('https://catalog.cgu.edu.tw/coursedata?sectionid=61602')" style="cursor:pointer;">
+    計算機網路實驗
+    </td>
+        <td>李春良</td>
+    </tr>
+    <tr>
+        <td>資工系</td>
+        <td onclick="openPopover('https://catalog.cgu.edu.tw/coursedata?sectionid=61603')" style="cursor:pointer;">
+    作業系統實務
+        </td>
+        <td>張哲維</td>
+    </tr>
+    <tr>
+        <td>資工系</td>
+        <td onclick="openPopover('https://catalog.cgu.edu.tw/coursedata?sectionid=58707')" style="cursor:pointer;">生物統計</td>
+        <td>陳光武</td>
+    </tr>
+    <tr>
+        <td>資工系</td>
+        <td onclick="openPopover('https://catalog.cgu.edu.tw/coursedata?sectionid=61604')" style="cursor:pointer;">通訊系統</td>
+        <td>陳仁暉</td>
+    </tr>
+    <tr>
+        <td>資工系</td>
+        <td onclick="openPopover('https://catalog.cgu.edu.tw/coursedata?sectionid=56665')" style="cursor:pointer;">軟硬體專題(2)</td>
+        <td>魏志達</td>
+    </tr>
+    
+
+
+</table>
+<div id="myPopover" class="popover">
+    <div class="popover-content">
+        <span class="close" onclick="closePopover()">&times;</span>
+        <iframe src="" frameborder="0"></iframe>
+    </div>
+</div>
+
+
+<button onclick="changeTeacher()">Change</button>
+
+<script>
+    function openPopover(url) {
+        var myIframe = document.querySelector("#myPopover iframe");
+        myIframe.src = url;
+        
+        document.getElementById("myPopover").style.display = "block";
+    }
+
+    function closePopover() {
+        document.getElementById("myPopover").style.display = "none";
+        document.querySelector("#myPopover iframe").src = "";
+    }
+
+    function changeTeacher() { 
+        var myTable = document.getElementById("csie");
+        myTable.rows[1].cells[2].innerHTML = "呂仁園";
+    }
+    window.onclick = function(event) {
+    var popover = document.getElementById("myPopover");
+    if (event.target == popover) {
+        popover.style.display = "none";
+    }
+    }
+</script>
+
+</body>
+</html>
