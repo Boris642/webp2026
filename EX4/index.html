@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script>
+    function tree(n) {
+    function repeatchar(count, char) {
+        let result = "";
+        for (let i = 0; i < count; i++) {
+            result += char;
+        }
+        return result;
+    }
+
+    for (let i = 1; i <= n; i++) {
+        let space = repeatchar(n - i, ' ');
+        let stars = repeatchar(2 * i - 1, '*');
+        console.log('"' + space + stars + '"');
+    }
+
+    for (let i = 0; i < 3; i++) {
+        let space = repeatchar(n - 1, ' ');
+        console.log('"' + space + '*' + '"');
+    }
+}
+
+tree(4);
+</script>
+</body>
+</html>
